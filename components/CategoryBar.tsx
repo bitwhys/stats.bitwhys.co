@@ -195,7 +195,7 @@ const CategoryBar = React.forwardRef<HTMLDivElement, CategoryBarProps>(
                   >
                     <div
                       aria-hidden
-                      className="absolute size-7 -translate-x-[45%] -translate-y-[15%]"
+                      className="absolute size-7 translate-x-[-45%] translate-y-[-15%]"
                     ></div>
                   </div>
                 </Tooltip>
