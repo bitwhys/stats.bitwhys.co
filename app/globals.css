@@ -139,6 +139,19 @@
   }
 }
 
+@theme {
+  --color-surface: var(--color-gray-2);
+  --color-surface-raised: var(--color-white-a12);
+  --color-surface-faint: var(--color-gray-3);
+  --color-surface-muted: var(--color-gray-4); /* disabled states */
+  /* borders */
+  --color-line: var(--color-gray-6);
+  --color-line-strong: var(--color-gray-7);
+  /* typography */
+  --color-ink: var(--color-gray-12);
+  --color-ink-detail: var(--color-gray-11);
+  --color-ink-meta: var(--color-gray-10);
+}
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -153,6 +166,6 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
+    border-color: var(--color-line, currentcolor);
   }
 }
