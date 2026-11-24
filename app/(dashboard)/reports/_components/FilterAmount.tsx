@@ -1,117 +1,113 @@
-import { Button } from "../../../../components/Button"
-import { Input } from "../../../../components/Input"
-import { Label } from "../../../../components/Label"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../../../components/Popover"
-import { Slider } from "../../../../components/Slider"
-import { transactions } from "../../../../data/transactions"
-import { cx, focusRing, formatters } from "../../../../lib/utils"
-import { useQueryState } from "nuqs"
-import React from "react"
+import { useQueryState } from "nuqs";
+import React from "react";
+import { Button } from "@/components/Button";
+import { Input } from "@/components/Input";
+import { Label } from "@/components/Label";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover";
+import { Slider } from "@/components/Slider";
+import { transactions } from "@/data/transactions";
+import { cx, focusRing, formatters } from "@/lib/utils";
 
 const presetOptions = [
   { label: "Below $1,000", min: 0, max: 1000 },
   { label: "Between $1,001 and $4,000", min: 1001, max: 4000 },
   { label: "Between $4,001 and $7,000", min: 4001, max: 7000 },
-]
+];
 
 function FilterAmount() {
   const [minAmount, maxAmount] = React.useMemo(() => {
-    const amounts = transactions.map(t => t.amount)
-    return [Math.floor(Math.min(...amounts)), Math.ceil(Math.max(...amounts))]
-  }, [])
+    const amounts = transactions.map((t) => t.amount);
+    return [Math.floor(Math.min(...amounts)), Math.ceil(Math.max(...amounts))];
+  }, []);
 
   const [range, setRange] = useQueryState("amount_range", {
     defaultValue: `${minAmount}-${maxAmount}`,
-    parse: value => {
+    parse: (value) => {
       try {
-        const [min, max] = value.split("-").map(Number)
+        const [min, max] = value.split("-").map(Number);
         if (isNaN(min) || isNaN(max)) {
-          throw new Error("Invalid range values")
+          throw new Error("Invalid range values");
         }
-        return `${Math.max(min, minAmount)}-${Math.min(max, maxAmount)}`
+        return `${Math.max(min, minAmount)}-${Math.min(max, maxAmount)}`;
       } catch (error) {
-        console.error("Error parsing amount range:", error)
-        return `${minAmount}-${maxAmount}`
+        console.error("Error parsing amount range:", error);
+        return `${minAmount}-${maxAmount}`;
       }
     },
-    serialize: value => value,
-  })
+    serialize: (value) => value,
+  });
 
   const [min, max] = React.useMemo(() => {
     try {
-      return range.split("-").map(Number)
+      return range.split("-").map(Number);
     } catch (error) {
-      console.error("Error parsing range:", error)
-      return [minAmount, maxAmount]
+      console.error("Error parsing range:", error);
+      return [minAmount, maxAmount];
     }
-  }, [range, minAmount, maxAmount])
+  }, [range, minAmount, maxAmount]);
 
-  const [localMin, setLocalMin] = React.useState(min)
-  const [localMax, setLocalMax] = React.useState(max)
+  const [localMin, setLocalMin] = React.useState(min);
+  const [localMax, setLocalMax] = React.useState(max);
 
   React.useEffect(() => {
-    setLocalMin(min)
-    setLocalMax(max)
-  }, [min, max])
+    setLocalMin(min);
+    setLocalMax(max);
+  }, [min, max]);
 
   const handleValueChange = (value: number[]) => {
-    setLocalMin(value[0])
-    setLocalMax(value[1])
-  }
+    setLocalMin(value[0]);
+    setLocalMax(value[1]);
+  };
 
   const handleValueCommit = (value: number[]) => {
-    setRange(`${value[0]}-${value[1]}`)
-  }
+    setRange(`${value[0]}-${value[1]}`);
+  };
 
   const handlePresetClick = (min: number, max: number) => {
-    const adjustedMin = Math.max(min, minAmount)
-    const adjustedMax = Math.min(max, maxAmount)
-    setLocalMin(adjustedMin)
-    setLocalMax(adjustedMax)
-    setRange(`${adjustedMin}-${adjustedMax}`)
-  }
+    const adjustedMin = Math.max(min, minAmount);
+    const adjustedMax = Math.min(max, maxAmount);
+    setLocalMin(adjustedMin);
+    setLocalMax(adjustedMax);
+    setRange(`${adjustedMin}-${adjustedMax}`);
+  };
 
   const handleMinInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newMin = Math.max(Number(e.target.value), minAmount)
+    const newMin = Math.max(Number(e.target.value), minAmount);
     if (newMin >= localMax) {
-      setLocalMax(newMin + 50)
+      setLocalMax(newMin + 50);
     }
-    setLocalMin(newMin)
-    setRange(`${newMin}-${localMax}`)
-  }
+    setLocalMin(newMin);
+    setRange(`${newMin}-${localMax}`);
+  };
 
   const handleMaxInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newMax = Math.min(Number(e.target.value), maxAmount)
+    const newMax = Math.min(Number(e.target.value), maxAmount);
     if (newMax <= localMin) {
-      setLocalMin(minAmount)
+      setLocalMin(minAmount);
     }
-    setLocalMax(newMax)
-    setRange(`${localMin}-${newMax}`)
-  }
+    setLocalMax(newMax);
+    setRange(`${localMin}-${newMax}`);
+  };
 
   const distributionData = React.useMemo(() => {
-    const numBins = 30
-    const binSize = (maxAmount - minAmount) / numBins
-    const bins = Array(numBins).fill(0)
-    transactions.forEach(t => {
+    const numBins = 30;
+    const binSize = (maxAmount - minAmount) / numBins;
+    const bins = Array(numBins).fill(0);
+    transactions.forEach((t) => {
       const binIndex = Math.min(
         Math.floor((t.amount - minAmount) / binSize),
         numBins - 1,
-      )
-      bins[binIndex]++
-    })
-    const maxCount = Math.max(...bins)
+      );
+      bins[binIndex]++;
+    });
+    const maxCount = Math.max(...bins);
     return bins.map((count, index) => ({
       height: (count / maxCount) * 100,
       isInRange:
         minAmount + index * binSize >= localMin &&
         minAmount + (index + 1) * binSize <= localMax,
-    }))
-  }, [minAmount, maxAmount, localMin, localMax])
+    }));
+  }, [minAmount, maxAmount, localMin, localMax]);
 
   return (
     <div>
@@ -159,7 +155,7 @@ function FilterAmount() {
             <p className="text-base sm:text-sm font-medium text-gray-900 dark:text-gray-50">
               Popular ranges:
             </p>
-            {presetOptions.map(option => (
+            {presetOptions.map((option) => (
               <Button
                 key={option.label}
                 variant="secondary"
@@ -201,7 +197,7 @@ function FilterAmount() {
         </PopoverContent>
       </Popover>
     </div>
-  )
+  );
 }
 
-export { FilterAmount }
+export { FilterAmount };

@@ -1,13 +1,18 @@
-import { Label } from "../../../../components/Label"
+import { useQueryState } from "nuqs";
+import { Label } from "@/components/Label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../../../components/Select"
-import { useQueryState } from "nuqs"
-import { DEFAULT_RANGE, RANGE_DAYS, RANGE_LABELS, RangeKey } from "./dateRanges"
+} from "@/components/Select";
+import {
+  DEFAULT_RANGE,
+  RANGE_DAYS,
+  RANGE_LABELS,
+  RangeKey,
+} from "./dateRanges";
 
 const FilterDate = () => {
   const [range, setRange] = useQueryState<RangeKey>("range", {
@@ -16,11 +21,11 @@ const FilterDate = () => {
       Object.keys(RANGE_DAYS).includes(value)
         ? (value as RangeKey)
         : DEFAULT_RANGE,
-  })
+  });
 
   const handleValueChange = (value: RangeKey) => {
-    setRange(value)
-  }
+    setRange(value);
+  };
 
   return (
     <div className="space-y-2">
@@ -40,7 +45,7 @@ const FilterDate = () => {
         </SelectContent>
       </Select>
     </div>
-  )
-}
+  );
+};
 
-export { FilterDate }
+export { FilterDate };

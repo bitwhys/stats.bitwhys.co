@@ -1,26 +1,26 @@
-"use client"
+"use client";
+import { useQueryState } from "nuqs";
+import React from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../../../../components/Accordion"
-import { Button } from "../../../../components/Button"
-import useScroll from "../../../../lib/useScroll"
-import { cx } from "../../../../lib/utils"
-import { useQueryState } from "nuqs"
-import React from "react"
-import { FilterAmount } from "./FilterAmount"
-import { FilterCountry } from "./FilterCountry"
-import { FilterDate } from "./FilterDate"
-import { FilterExpenseStatus } from "./FilterExpenseStatus"
-import { DEFAULT_RANGE } from "./dateRanges"
+} from "@/components/Accordion";
+import { Button } from "@/components/Button";
+import useScroll from "@/lib/useScroll";
+import { cx } from "@/lib/utils";
+import { DEFAULT_RANGE } from "./dateRanges";
+import { FilterAmount } from "./FilterAmount";
+import { FilterCountry } from "./FilterCountry";
+import { FilterDate } from "./FilterDate";
+import { FilterExpenseStatus } from "./FilterExpenseStatus";
 
 function FormattedDate() {
-  const [dateString, setDateString] = React.useState<string>("")
+  const [dateString, setDateString] = React.useState<string>("");
 
   React.useEffect(() => {
-    const date = new Date(new Date().setHours(new Date().getHours() - 1))
+    const date = new Date(new Date().setHours(new Date().getHours() - 1));
     setDateString(
       date.toLocaleString("en-GB", {
         day: "2-digit",
@@ -30,30 +30,30 @@ function FormattedDate() {
         minute: "2-digit",
         hour12: false,
       }),
-    )
-  }, [])
+    );
+  }, []);
 
   return (
     <p className="whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
       Last refresh: {dateString}
     </p>
-  )
+  );
 }
 
 export default function Header() {
-  const scrolled = useScroll(10)
+  const scrolled = useScroll(10);
 
-  const [, setRange] = useQueryState("range")
-  const [, setExpenseStatus] = useQueryState("expense_status")
-  const [, setAmountRange] = useQueryState("amount_range")
-  const [, setSelectedCountries] = useQueryState("countries")
+  const [, setRange] = useQueryState("range");
+  const [, setExpenseStatus] = useQueryState("expense_status");
+  const [, setAmountRange] = useQueryState("amount_range");
+  const [, setSelectedCountries] = useQueryState("countries");
 
   const handleResetFilters = () => {
-    setRange(DEFAULT_RANGE)
-    setExpenseStatus(null)
-    setAmountRange(null)
-    setSelectedCountries(null)
-  }
+    setRange(DEFAULT_RANGE);
+    setExpenseStatus(null);
+    setAmountRange(null);
+    setSelectedCountries(null);
+  };
 
   return (
     <section
@@ -107,5 +107,5 @@ export default function Header() {
         </Button>
       </div>
     </section>
-  )
+  );
 }

@@ -1,19 +1,17 @@
-"use client"
-import React from "react"
-
-import { cx } from "../../lib/utils"
-
-import { Sidebar } from "../../components/ui/navigation/Sidebar"
+"use client";
+import React from "react";
+import { Sidebar } from "@/components/ui/navigation/Sidebar";
+import { cx } from "@/lib/utils";
 
 export default function Layout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
-  const [isCollapsed, setIsCollapsed] = React.useState(false)
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
   const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed)
-  }
+    setIsCollapsed(!isCollapsed);
+  };
   return (
     <div className="mx-auto max-w-(--breakpoint-2xl)">
       <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
@@ -28,5 +26,5 @@ export default function Layout({
         </div>
       </main>
     </div>
-  )
+  );
 }
