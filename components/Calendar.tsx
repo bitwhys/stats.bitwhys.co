@@ -82,14 +82,14 @@ type RangeProps = OmitKeys<DayPickerRangeProps, KeysToOmit>
 
 type CalendarProps =
   | ({
-    mode: "single"
-  } & SingleProps)
+      mode: "single"
+    } & SingleProps)
   | ({
-    mode?: undefined
-  } & SingleProps)
+      mode?: undefined
+    } & SingleProps)
   | ({
-    mode: "range"
-  } & RangeProps)
+      mode: "range"
+    } & RangeProps)
 
 const Calendar = ({
   mode = "single",
@@ -163,7 +163,7 @@ const Calendar = ({
           } = useNavigation()
           const { numberOfMonths, fromDate, toDate } = useDayPicker()
 
-          const displayIndex = displayMonths.findIndex((month) =>
+          const displayIndex = displayMonths.findIndex(month =>
             isSameMonth(props.displayMonth, month),
           )
           const isFirst = displayIndex === 0
@@ -202,7 +202,7 @@ const Calendar = ({
                       !previousMonth ||
                       (fromDate &&
                         addYears(currentMonth, -1).getTime() <
-                        fromDate.getTime())
+                          fromDate.getTime())
                     }
                     aria-label="Go to previous year"
                     onClick={goToPreviousYear}

@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation"
 import React from "react"
 
 export default function Login() {
-
   const [loading, setLoading] = React.useState(false)
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -91,10 +90,7 @@ export default function Login() {
                 />
               </div>
             </div>
-            <Button
-              type="submit"
-              isLoading={loading}
-            >
+            <Button type="submit" isLoading={loading}>
               {loading ? "" : "Continue"}
             </Button>
           </form>

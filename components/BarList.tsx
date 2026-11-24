@@ -23,7 +23,7 @@ interface BarListProps<T = unknown>
 function BarListInner<T>(
   {
     data = [],
-    valueFormatter = (value) => value.toString(),
+    valueFormatter = value => value.toString(),
     showAnimation = false,
     onValueChange,
     sortOrder = "descending",
@@ -43,8 +43,8 @@ function BarListInner<T>(
   }, [data, sortOrder])
 
   const widths = React.useMemo(() => {
-    const maxValue = Math.max(...sortedData.map((item) => item.value), 0)
-    return sortedData.map((item) =>
+    const maxValue = Math.max(...sortedData.map(item => item.value), 0)
+    return sortedData.map(item =>
       item.value === 0 ? 0 : Math.max((item.value / maxValue) * 100, 2),
     )
   }, [sortedData])
@@ -73,10 +73,10 @@ function BarListInner<T>(
               focusRing,
               onValueChange
                 ? [
-                  "m-0! cursor-pointer",
-                  // hover
-                  "hover:bg-gray-50 dark:hover:bg-gray-900",
-                ]
+                    "m-0! cursor-pointer",
+                    // hover
+                    "hover:bg-gray-50 dark:hover:bg-gray-900",
+                  ]
                 : "",
             )}
           >
@@ -114,7 +114,7 @@ function BarListInner<T>(
                     )}
                     target="_blank"
                     rel="noreferrer"
-                    onClick={(event) => event.stopPropagation()}
+                    onClick={event => event.stopPropagation()}
                   >
                     {item.name}
                   </a>

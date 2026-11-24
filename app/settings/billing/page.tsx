@@ -125,7 +125,7 @@ export default function Billing() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data.map((member) => (
+                  {data.map(member => (
                     <TableRow key={member.name}>
                       <TableCell className="py-2.5">{member.name}</TableCell>
                       <TableCell className="py-2.5 text-right">
@@ -440,7 +440,7 @@ export default function Billing() {
                       <SelectValue placeholder="State" />
                     </SelectTrigger>
                     <SelectContent>
-                      {states.map((item) => (
+                      {states.map(item => (
                         <SelectItem key={item.value} value={item.value}>
                           {item.label}
                         </SelectItem>

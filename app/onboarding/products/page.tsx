@@ -92,7 +92,7 @@ const CategoryItem = ({
             id={category.id}
             name={category.title}
             checked={checked}
-            onCheckedChange={(isChecked) =>
+            onCheckedChange={isChecked =>
               onCheckedChange(category.id, isChecked === true)
             }
           />
@@ -102,7 +102,7 @@ const CategoryItem = ({
         </div>
         {category.subcategories.length > 0 && (
           <ul className="ml-6 mt-2 flex flex-wrap gap-1.5">
-            {category.subcategories.map((subcategory) => (
+            {category.subcategories.map(subcategory => (
               <li
                 className={badgeVariants({ variant: "neutral" })}
                 key={subcategory}
@@ -123,7 +123,7 @@ export default function Products() {
   const router = useRouter()
 
   const handleCheckedChange = (categoryId: string, isChecked: boolean) => {
-    setCheckedItems((prevCheckedItems) => ({
+    setCheckedItems(prevCheckedItems => ({
       ...prevCheckedItems,
       [categoryId]: isChecked,
     }))

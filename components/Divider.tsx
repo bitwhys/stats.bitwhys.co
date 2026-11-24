@@ -4,7 +4,7 @@ import React from "react"
 
 import { cx } from "../lib/utils"
 
-interface DividerProps extends React.ComponentPropsWithoutRef<"div"> { }
+interface DividerProps extends React.ComponentPropsWithoutRef<"div"> {}
 
 const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
   ({ className, children, ...props }, forwardedRef) => (

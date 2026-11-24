@@ -190,7 +190,9 @@ export default function AuditRules() {
                   >
                     <AccordionTrigger className="truncate">
                       <div className="flex h-8 w-full items-center justify-between gap-4 truncate">
-                        <span className="truncate">IRS receipt rule for all US employees</span>
+                        <span className="truncate">
+                          IRS receipt rule for all US employees
+                        </span>
                         <span className="mr-6 flex items-center gap-2">
                           <CircleCheckBig
                             className="size-5 shrink-0 text-emerald-600 dark:text-emerald-500"
@@ -408,7 +410,7 @@ export default function AuditRules() {
                                   <SelectValue placeholder="Select event" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  {data.map((item) => (
+                                  {data.map(item => (
                                     <SelectItem
                                       key={item.value}
                                       value={item.value}
@@ -468,7 +470,7 @@ export default function AuditRules() {
                                   <SelectValue placeholder="Select condition" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  {conditions.map((item) => (
+                                  {conditions.map(item => (
                                     <SelectItem
                                       key={item.value}
                                       value={item.value}
@@ -539,7 +541,7 @@ export default function AuditRules() {
                                   <SelectValue placeholder="Select action" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  {actions.map((item) => (
+                                  {actions.map(item => (
                                     <SelectItem
                                       key={item.value}
                                       value={item.value}
@@ -559,7 +561,7 @@ export default function AuditRules() {
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  {users.map((item) => (
+                                  {users.map(item => (
                                     <SelectItem
                                       key={item.name}
                                       value={item.name}

@@ -2,7 +2,11 @@ import { Button } from "../../../../components/Button"
 import { Checkbox } from "../../../../components/Checkbox"
 import { Input } from "../../../../components/Input"
 import { Label } from "../../../../components/Label"
-import { Popover, PopoverContent, PopoverTrigger } from "../../../../components/Popover"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../../../../components/Popover"
 import { locations } from "../../../../data/schema"
 import { cx } from "../../../../lib/utils"
 import { useQueryState } from "nuqs"
@@ -43,18 +47,18 @@ const ContinentCheckbox = ({
   continent,
   onSelectionChange,
 }: ContinentCheckboxProps) => {
-  const allSelected = continent.countries.every((country) => country.selected)
-  const someSelected = continent.countries.some((country) => country.selected)
+  const allSelected = continent.countries.every(country => country.selected)
+  const someSelected = continent.countries.some(country => country.selected)
 
   const handleContinentChange = (checked: boolean) => {
-    const updatedCountries = continent.countries.map((country) => country.name)
+    const updatedCountries = continent.countries.map(country => country.name)
     onSelectionChange(continent.name, checked ? updatedCountries : [])
   }
 
   const handleCountryChange = (countryName: string, checked: boolean) => {
     const updatedCountries = continent.countries
-      .filter((country) => country.selected || country.name === countryName)
-      .map((country) => country.name)
+      .filter(country => country.selected || country.name === countryName)
+      .map(country => country.name)
 
     if (!checked) {
       const index = updatedCountries.indexOf(countryName)
@@ -72,12 +76,15 @@ const ContinentCheckbox = ({
           checked={allSelected ? true : someSelected ? "indeterminate" : false}
           onCheckedChange={handleContinentChange}
         />
-        <Label className="w-full text-base sm:text-sm font-medium" htmlFor={continent.name}>
+        <Label
+          className="w-full text-base sm:text-sm font-medium"
+          htmlFor={continent.name}
+        >
           {continent.name}
         </Label>
       </div>
       <div className="ml-4 flex flex-col gap-2">
-        {continent.countries.map((country) => (
+        {continent.countries.map(country => (
           <div key={country.name} className="flex items-center gap-2">
             <Checkbox
               id={country.name}
@@ -86,7 +93,10 @@ const ContinentCheckbox = ({
                 handleCountryChange(country.name, checked)
               }
             />
-            <Label className="text-base sm:text-sm w-full" htmlFor={country.name}>
+            <Label
+              className="text-base sm:text-sm w-full"
+              htmlFor={country.name}
+            >
               {country.name}
             </Label>
           </div>
@@ -110,9 +120,9 @@ function FilterCountry() {
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
   const continents = useMemo(() => {
-    return locations.map((location) => ({
+    return locations.map(location => ({
       name: location.name,
-      countries: location.countries.map((country) => ({
+      countries: location.countries.map(country => ({
         name: country,
         selected: selectedCountries.includes(country),
       })),
@@ -121,16 +131,16 @@ function FilterCountry() {
 
   const filteredContinents = useMemo(() => {
     return continents
-      .map((continent) => ({
+      .map(continent => ({
         ...continent,
-        countries: continent.countries.filter((country) =>
+        countries: continent.countries.filter(country =>
           country.name
             .toLowerCase()
             .includes(debouncedSearchTerm.toLowerCase()),
         ),
       }))
       .filter(
-        (continent) =>
+        continent =>
           continent.name
             .toLowerCase()
             .includes(debouncedSearchTerm.toLowerCase()) ||
@@ -140,9 +150,9 @@ function FilterCountry() {
 
   const handleSelectionChange = (continent: string, countries: string[]) => {
     const otherSelectedCountries = selectedCountries.filter(
-      (country) =>
+      country =>
         !locations
-          .find((loc) => loc.name === continent)
+          .find(loc => loc.name === continent)
           ?.countries.includes(country),
     )
     setSelectedCountries([...otherSelectedCountries, ...countries])
@@ -179,13 +189,13 @@ function FilterCountry() {
             <Input
               placeholder="Search for continent or country"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={e => setSearchTerm(e.target.value)}
               className="sm:[&>input]:py-1.5"
             />
             <div className="grow overflow-y-auto">
               <div className={filteredContinents.length > 0 ? "space-y-4" : ""}>
                 {filteredContinents.length > 0 ? (
-                  filteredContinents.map((continent) => (
+                  filteredContinents.map(continent => (
                     <ContinentCheckbox
                       key={continent.name}
                       continent={continent}

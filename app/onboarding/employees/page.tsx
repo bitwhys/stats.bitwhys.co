@@ -50,7 +50,7 @@ export default function Employees() {
           <legend className="sr-only">Select number of employees</legend>
           <RadioCardGroup
             value={selectedEmployeeCount}
-            onValueChange={(value) => setSelectedEmployeeCount(value)}
+            onValueChange={value => setSelectedEmployeeCount(value)}
             required
             aria-label="Number of employees"
           >

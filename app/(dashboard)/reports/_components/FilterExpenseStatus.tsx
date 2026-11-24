@@ -25,8 +25,8 @@ function FilterExpenseStatus() {
   const DEFAULT_STATUS = "all"
   const [status, setStatus] = useQueryState<string>("expense_status", {
     defaultValue: DEFAULT_STATUS,
-    parse: (value) =>
-      [DEFAULT_STATUS, ...expense_statuses.map((s) => s.value)].includes(value)
+    parse: value =>
+      [DEFAULT_STATUS, ...expense_statuses.map(s => s.value)].includes(value)
         ? value
         : DEFAULT_STATUS,
   })
@@ -48,7 +48,7 @@ function FilterExpenseStatus() {
           <SelectItem key="all" value="all">
             All
           </SelectItem>
-          {expense_statuses.map((status) => (
+          {expense_statuses.map(status => (
             <SelectItem key={status.value} value={status.value}>
               <div className="flex items-center gap-x-2.5">
                 <span

@@ -98,7 +98,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                 Platform
               </span>
               <ul role="list" className="mt-1 space-y-2">
-                {navigation.map((item) => (
+                {navigation.map(item => (
                   <li key={item.name}>
                     {isCollapsed ? (
                       <Tooltip

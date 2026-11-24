@@ -1,9 +1,9 @@
 // Tremor Raw TabNavigation [v0.0.1]
 
-import * as NavigationMenuPrimitives from "@radix-ui/react-navigation-menu";
-import React from "react";
+import * as NavigationMenuPrimitives from "@radix-ui/react-navigation-menu"
+import React from "react"
 
-import { cx, focusRing } from "../lib/utils";
+import { cx, focusRing } from "../lib/utils"
 
 function getSubtree(
   options: { asChild: boolean | undefined; children: React.ReactNode },
@@ -66,11 +66,11 @@ const TabNavigationLink = React.forwardRef<
         disabled ? "pointer-events-none" : "",
       )}
       ref={forwardedRef}
-      onSelect={() => { }}
+      onSelect={() => {}}
       asChild={asChild}
       {...props}
     >
-      {getSubtree({ asChild, children }, (children) => (
+      {getSubtree({ asChild, children }, children => (
         <span
           className={cx(
             // base
@@ -101,4 +101,4 @@ const TabNavigationLink = React.forwardRef<
 
 TabNavigationLink.displayName = "TabNavigationLink"
 
-export { TabNavigation, TabNavigationLink };
+export { TabNavigation, TabNavigationLink }

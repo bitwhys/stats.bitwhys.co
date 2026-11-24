@@ -46,7 +46,7 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
     color: "blue",
     processData: (transactions, filterDate, filters) => {
       const summedData: Record<string, number> = {}
-      transactions.forEach((transaction) => {
+      transactions.forEach(transaction => {
         const date = transaction.transaction_date.split("T")[0]
         if (isTransactionValid(transaction, filterDate, filters)) {
           summedData[date] = (summedData[date] || 0) + transaction.amount
@@ -74,7 +74,7 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
       "Total number of transactions for the selected period and amount range.",
     processData: (transactions, filterDate, filters) => {
       const countedData: Record<string, number> = {}
-      transactions.forEach((transaction) => {
+      transactions.forEach(transaction => {
         const date = transaction.transaction_date.split("T")[0]
         if (isTransactionValid(transaction, filterDate, filters)) {
           countedData[date] = (countedData[date] || 0) + 1
@@ -103,7 +103,7 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
       "Total amount of transactions for the top 5 categories in the selected period and amount range.",
     processData: (transactions, filterDate, filters) => {
       const categoryTotals: Record<string, number> = {}
-      transactions.forEach((transaction) => {
+      transactions.forEach(transaction => {
         if (isTransactionValid(transaction, filterDate, filters)) {
           categoryTotals[transaction.category] =
             (categoryTotals[transaction.category] || 0) + transaction.amount
@@ -125,7 +125,7 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
       "Total amount of transactions for the top 5 merchants in the selected period and amount range.",
     processData: (transactions, filterDate, filters) => {
       const merchantTotals: Record<string, number> = {}
-      transactions.forEach((transaction) => {
+      transactions.forEach(transaction => {
         if (isTransactionValid(transaction, filterDate, filters)) {
           merchantTotals[transaction.merchant] =
             (merchantTotals[transaction.merchant] || 0) + transaction.amount

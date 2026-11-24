@@ -49,7 +49,7 @@ const inputStyles = tv({
 
 interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
-  VariantProps<typeof inputStyles> {
+    VariantProps<typeof inputStyles> {
   inputClassName?: string
 }
 
@@ -94,10 +94,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               "text-gray-400 dark:text-gray-600",
             )}
           >
-            <RiSearchLine
-              className="size-4.5 shrink-0"
-              aria-hidden="true"
-            />
+            <RiSearchLine className="size-4.5 shrink-0" aria-hidden="true" />
           </div>
         )}
         {isPassword && (

@@ -81,9 +81,7 @@ const keywordCategories = [
 ]
 
 const getStateColor = (state: string) => {
-  const category = keywordCategories.find(
-    (category) => category.value === state,
-  )
+  const category = keywordCategories.find(category => category.value === state)
   return category ? category.color : null
 }
 
@@ -124,7 +122,7 @@ export default function TransactionPolicy() {
             className="mt-6 flex flex-wrap gap-12"
             aria-label="Transaction categories"
           >
-            {blacklist.map((item) => (
+            {blacklist.map(item => (
               <li key={item.category} className="flex items-start gap-2.5">
                 <span
                   className={cx(item.color, "mt-[2px] size-2.5 rounded-xs")}
@@ -174,7 +172,7 @@ export default function TransactionPolicy() {
             className="mt-1 divide-y divide-gray-200 dark:divide-gray-800"
             aria-labelledby="keyword-heading transaction-count-heading"
           >
-            {keywords.map((item) => (
+            {keywords.map(item => (
               <li
                 key={item.value}
                 className="flex items-center justify-between py-2.5"
@@ -252,7 +250,7 @@ export default function TransactionPolicy() {
                       </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                      {keywordCategories.map((item) => (
+                      {keywordCategories.map(item => (
                         <SelectItem key={item.value} value={item.value}>
                           <div className="flex items-center gap-2">
                             <div
@@ -280,7 +278,7 @@ export default function TransactionPolicy() {
                   <Button
                     variant="secondary"
                     className="w-full sm:w-fit"
-                    onClick={(e) => {
+                    onClick={e => {
                       e.preventDefault()
                       setIsKeyword(!isKeyword)
                     }}
@@ -297,7 +295,7 @@ export default function TransactionPolicy() {
           <Button
             variant="secondary"
             className={cx("mt-4 w-full sm:w-fit", isKeyword && "hidden")}
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault()
               setIsKeyword(!isKeyword)
             }}

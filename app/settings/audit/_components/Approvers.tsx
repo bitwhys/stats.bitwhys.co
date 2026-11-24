@@ -131,7 +131,7 @@ export default function Approvers() {
                           <SelectValue placeholder="Select Permission" />
                         </SelectTrigger>
                         <SelectContent>
-                          {departments.map((item) => (
+                          {departments.map(item => (
                             <SelectItem key={item.value} value={item.label}>
                               {item.label}
                             </SelectItem>
@@ -166,7 +166,7 @@ export default function Approvers() {
             aria-labelledby="approvers-count"
             className="mt-6 divide-y divide-gray-200 dark:divide-gray-800"
           >
-            {users.map((item) => (
+            {users.map(item => (
               <li
                 key={item.name}
                 className="flex flex-col items-center justify-between gap-4 py-4 sm:flex-row sm:py-3"
@@ -196,7 +196,7 @@ export default function Approvers() {
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
-                      {departments.map((dept) => (
+                      {departments.map(dept => (
                         <SelectItem key={dept.value} value={dept.label}>
                           {dept.label}
                         </SelectItem>

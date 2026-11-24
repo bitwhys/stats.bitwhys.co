@@ -1,7 +1,11 @@
 import { Button } from "../../../../components/Button"
 import { Input } from "../../../../components/Input"
 import { Label } from "../../../../components/Label"
-import { Popover, PopoverContent, PopoverTrigger } from "../../../../components/Popover"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../../../../components/Popover"
 import { Slider } from "../../../../components/Slider"
 import { transactions } from "../../../../data/transactions"
 import { cx, focusRing, formatters } from "../../../../lib/utils"
@@ -16,13 +20,13 @@ const presetOptions = [
 
 function FilterAmount() {
   const [minAmount, maxAmount] = React.useMemo(() => {
-    const amounts = transactions.map((t) => t.amount)
+    const amounts = transactions.map(t => t.amount)
     return [Math.floor(Math.min(...amounts)), Math.ceil(Math.max(...amounts))]
   }, [])
 
   const [range, setRange] = useQueryState("amount_range", {
     defaultValue: `${minAmount}-${maxAmount}`,
-    parse: (value) => {
+    parse: value => {
       try {
         const [min, max] = value.split("-").map(Number)
         if (isNaN(min) || isNaN(max)) {
@@ -34,7 +38,7 @@ function FilterAmount() {
         return `${minAmount}-${maxAmount}`
       }
     },
-    serialize: (value) => value,
+    serialize: value => value,
   })
 
   const [min, max] = React.useMemo(() => {
@@ -93,7 +97,7 @@ function FilterAmount() {
     const numBins = 30
     const binSize = (maxAmount - minAmount) / numBins
     const bins = Array(numBins).fill(0)
-    transactions.forEach((t) => {
+    transactions.forEach(t => {
       const binIndex = Math.min(
         Math.floor((t.amount - minAmount) / binSize),
         numBins - 1,
@@ -155,7 +159,7 @@ function FilterAmount() {
             <p className="text-base sm:text-sm font-medium text-gray-900 dark:text-gray-50">
               Popular ranges:
             </p>
-            {presetOptions.map((option) => (
+            {presetOptions.map(option => (
               <Button
                 key={option.label}
                 variant="secondary"

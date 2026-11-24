@@ -46,7 +46,10 @@ export default function MobileSidebar() {
             aria-label="open sidebar"
             className="group flex items-center rounded-md p-1.5 text-sm font-medium hover:bg-gray-100 data-[state=open]:bg-gray-100 data-[state=open]:bg-gray-400/10 dark:hover:bg-gray-400/10"
           >
-            <Menu className="size-6 shrink-0 text-gray-600 dark:text-gray-400" aria-hidden="true" />
+            <Menu
+              className="size-6 shrink-0 text-gray-600 dark:text-gray-400"
+              aria-hidden="true"
+            />
           </Button>
         </DrawerTrigger>
         <DrawerContent className="sm:max-w-lg">
@@ -67,7 +70,7 @@ export default function MobileSidebar() {
                   Platform
                 </span>
                 <ul role="list" className="mt-1 space-y-1.5">
-                  {navigation.map((item) => (
+                  {navigation.map(item => (
                     <li key={item.name}>
                       <DrawerClose asChild>
                         <Link

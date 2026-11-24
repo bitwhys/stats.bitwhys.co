@@ -61,12 +61,12 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
         <div className="relative overflow-hidden overflow-x-auto">
           <Table>
             <TableHead>
-              {table.getHeaderGroups().map((headerGroup) => (
+              {table.getHeaderGroups().map(headerGroup => (
                 <TableRow
                   key={headerGroup.id}
                   className="border-y border-gray-200 dark:border-gray-800"
                 >
-                  {headerGroup.headers.map((header) => (
+                  {headerGroup.headers.map(header => (
                     <TableHeaderCell
                       key={header.id}
                       className={cx(
@@ -85,7 +85,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
             </TableHead>
             <TableBody>
               {table.getRowModel().rows?.length ? (
-                table.getRowModel().rows.map((row) => (
+                table.getRowModel().rows.map(row => (
                   <TableRow
                     key={row.id}
                     className="group select-none hover:bg-gray-50 dark:hover:bg-gray-900"

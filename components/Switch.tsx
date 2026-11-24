@@ -63,10 +63,10 @@ const switchVariants = tv({
 
 interface SwitchProps
   extends Omit<
-    React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>,
-    "asChild"
-  >,
-  VariantProps<typeof switchVariants> { }
+      React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>,
+      "asChild"
+    >,
+    VariantProps<typeof switchVariants> {}
 
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,

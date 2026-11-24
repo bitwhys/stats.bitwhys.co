@@ -41,7 +41,7 @@ const PopoverClose = React.forwardRef<
 PopoverClose.displayName = "PopoverClose"
 
 interface ContentProps
-  extends React.ComponentPropsWithoutRef<typeof PopoverPrimitives.Content> { }
+  extends React.ComponentPropsWithoutRef<typeof PopoverPrimitives.Content> {}
 
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitives.Content>,
@@ -86,7 +86,7 @@ const PopoverContent = React.forwardRef<
           )}
           // https://github.com/radix-ui/primitives/issues/1159
           tremor-id="tremor-raw"
-          onWheel={(event) => {
+          onWheel={event => {
             event.stopPropagation()
             const isScrollingDown = event.deltaY > 0
             if (isScrollingDown) {

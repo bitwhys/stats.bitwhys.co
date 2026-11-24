@@ -37,7 +37,7 @@ export const getColumns = ({
       cell: ({ row }) => (
         <Checkbox
           checked={row.getIsSelected()}
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
           onCheckedChange={() => row.toggleSelected()}
           className="translate-y-0.5"
           aria-label="Select row"
@@ -75,9 +75,7 @@ export const getColumns = ({
       },
       cell: ({ row }) => {
         const statusValue = row.getValue("expense_status")
-        const status = expense_statuses.find(
-          (item) => item.value === statusValue,
-        )
+        const status = expense_statuses.find(item => item.value === statusValue)
         if (!status) {
           return statusValue // Fallback to displaying the raw status
         }

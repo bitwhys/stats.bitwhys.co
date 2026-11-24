@@ -19,7 +19,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../../components/Select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/Tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../../../components/Tabs"
 import { Transaction, expense_statuses } from "../../../../data/schema"
 import { Download, File, Trash2 } from "lucide-react"
 import React from "react"
@@ -47,10 +52,10 @@ export function DataTableDrawer({
   })
 
   const status = expense_statuses.find(
-    (item) => item.value === datas?.expense_status,
+    item => item.value === datas?.expense_status,
   )
 
-  const filesList = files.map((file) => (
+  const filesList = files.map(file => (
     <li
       key={file.name}
       className="relative rounded-lg border border-gray-300 bg-white p-4 shadow-xs dark:border-gray-800 dark:bg-[#090E1A]"
@@ -61,8 +66,8 @@ export function DataTableDrawer({
           className="rounded-md p-2 text-gray-400 transition-all hover:text-rose-500 dark:text-gray-600 dark:hover:text-rose-500"
           aria-label="Remove file"
           onClick={() =>
-            setFiles((prevFiles) =>
-              prevFiles.filter((prevFile) => prevFile.name !== file.name),
+            setFiles(prevFiles =>
+              prevFiles.filter(prevFile => prevFile.name !== file.name),
             )
           }
         >

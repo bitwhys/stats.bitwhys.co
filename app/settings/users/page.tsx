@@ -161,7 +161,7 @@ export default function Users() {
                             <SelectValue placeholder="Select Permission" />
                           </SelectTrigger>
                           <SelectContent>
-                            {departments.map((item) => (
+                            {departments.map(item => (
                               <SelectItem key={item.value} value={item.label}>
                                 {item.label}
                               </SelectItem>
@@ -213,7 +213,7 @@ export default function Users() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {users.map((item) => (
+                  {users.map(item => (
                     <TableRow key={item.name}>
                       <TableCell className="w-full">
                         {item.status === "pending" ? (
@@ -276,7 +276,7 @@ export default function Users() {
                               <SelectValue placeholder="Select" />
                             </SelectTrigger>
                             <SelectContent>
-                              {departments.map((dept) => (
+                              {departments.map(dept => (
                                 <SelectItem key={dept.value} value={dept.label}>
                                   {dept.label}
                                 </SelectItem>

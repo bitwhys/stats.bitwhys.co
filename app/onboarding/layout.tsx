@@ -23,7 +23,7 @@ interface StepProgressProps {
 
 const StepProgress = ({ steps }: StepProgressProps) => {
   const pathname = usePathname()
-  const currentStepIndex = steps.findIndex((step) =>
+  const currentStepIndex = steps.findIndex(step =>
     pathname.startsWith(step.href),
   )
 

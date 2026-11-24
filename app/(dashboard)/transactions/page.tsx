@@ -13,7 +13,7 @@ export default function Example() {
   const datas = row?.original
 
   const columns = getColumns({
-    onEditClick: (row) => {
+    onEditClick: row => {
       setRow(row)
       setIsOpen(true)
     },
@@ -28,7 +28,7 @@ export default function Example() {
         <DataTable
           data={transactions}
           columns={columns}
-          onRowClick={(row) => {
+          onRowClick={row => {
             setRow(row)
             setIsOpen(true)
           }}

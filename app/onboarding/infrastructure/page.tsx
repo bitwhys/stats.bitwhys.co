@@ -3,7 +3,10 @@ import { Button } from "../../../components/Button"
 import { Card } from "../../../components/Card"
 import { Input } from "../../../components/Input"
 import { Label } from "../../../components/Label"
-import { RadioCardGroup, RadioCardItem } from "../../../components/RadioCardGroup"
+import {
+  RadioCardGroup,
+  RadioCardItem,
+} from "../../../components/RadioCardGroup"
 import { RadioGroup, RadioGroupItem } from "../../../components/RadioGroup"
 import {
   Select,
@@ -241,7 +244,7 @@ export default function PricingCalculator() {
 
     const basePrice = basePrices[cloudProvider]
     const selectedRegion = regionOptions[cloudProvider].find(
-      (r) => r.value === region,
+      r => r.value === region,
     )
     const regionMultiplier = selectedRegion?.multiplier || 1.0
     const storagePrice =
@@ -287,16 +290,16 @@ export default function PricingCalculator() {
             <RadioCardGroup
               id="cloud-provider"
               value={cloudProvider}
-              onValueChange={(value) =>
+              onValueChange={value =>
                 setCloudProvider(value as "aws" | "azure")
               }
               className="mt-2 grid grid-cols-1 gap-4 sm:text-sm md:grid-cols-2"
               aria-label="Select cloud provider"
             >
-              {Object.keys(regionOptions).map((provider) => {
+              {Object.keys(regionOptions).map(provider => {
                 const Icon =
                   cloudProviderIcons[
-                  provider as keyof typeof cloudProviderIcons
+                    provider as keyof typeof cloudProviderIcons
                   ]
                 return (
                   <RadioCardItem key={provider} value={provider}>
@@ -342,7 +345,7 @@ export default function PricingCalculator() {
                 min={6}
                 max={128}
                 value={storageVolume}
-                onChange={(e) => setStorageVolume(Number(e.target.value))}
+                onChange={e => setStorageVolume(Number(e.target.value))}
                 aria-describedby="storage-description"
               />
               <p id="storage-description" className="sr-only">
@@ -355,7 +358,7 @@ export default function PricingCalculator() {
               </legend>
               <RadioGroup
                 value={compression}
-                onValueChange={(value) => {
+                onValueChange={value => {
                   setCompression(value)
                 }}
                 className="flex gap-6 pt-2.5"
@@ -391,7 +394,7 @@ export default function PricingCalculator() {
                 <SelectValue placeholder="Select region" />
               </SelectTrigger>
               <SelectContent>
-                {regionOptions[cloudProvider].map((option) => (
+                {regionOptions[cloudProvider].map(option => (
                   <SelectItem key={option.value} value={option.value}>
                     <span className="flex items-center gap-x-2">
                       {option.label}

@@ -1,7 +1,10 @@
 "use client"
 import React from "react"
 
-import { TabNavigation, TabNavigationLink } from "../../components/TabNavigation"
+import {
+  TabNavigation,
+  TabNavigationLink,
+} from "../../components/TabNavigation"
 import { Sidebar } from "../../components/ui/navigation/Sidebar"
 import { cx } from "../../lib/utils"
 import Link from "next/link"
@@ -38,7 +41,7 @@ export default function Layout({
             Settings
           </h1>
           <TabNavigation className="mt-6">
-            {navigationSettings.map((item) => (
+            {navigationSettings.map(item => (
               <TabNavigationLink
                 key={item.name}
                 asChild

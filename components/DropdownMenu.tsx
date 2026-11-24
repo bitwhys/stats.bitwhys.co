@@ -371,7 +371,18 @@ const DropdownMenuIconWrapper = ({
 DropdownMenuIconWrapper.displayName = "DropdownMenuIconWrapper"
 
 export {
-  DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuIconWrapper, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup,
-  DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuSubMenu,
-  DropdownMenuSubMenuContent, DropdownMenuSubMenuTrigger, DropdownMenuTrigger
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuIconWrapper,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuSubMenu,
+  DropdownMenuSubMenuContent,
+  DropdownMenuSubMenuTrigger,
+  DropdownMenuTrigger,
 }
