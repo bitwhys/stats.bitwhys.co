@@ -11,7 +11,7 @@ const Tabs = (
     "orientation"
   >,
 ) => {
-  return <TabsPrimitives.Root tremor-id="tremor-raw" {...props} />
+  return <TabsPrimitives.Root data-slot="tremor-tabs" {...props} />
 }
 
 Tabs.displayName = "Tabs"
@@ -30,7 +30,7 @@ const variantStyles: Record<TabsListVariant, string> = {
     // base
     "flex items-center justify-start border-b",
     // border color
-    "border-gray-200 dark:border-gray-800",
+    "border-line",
   ),
   solid: cx(
     // base
@@ -66,17 +66,17 @@ function getVariantStyles(tabVariant: TabsListVariant) {
         // base
         "-mb-px items-center justify-center whitespace-nowrap border-b-2 border-transparent px-3 pb-3 text-sm font-medium transition-all",
         // text color
-        "text-gray-500 dark:text-gray-500",
+        "text-ink-meta",
         // hover
-        "hover:text-gray-700 dark:hover:text-gray-400",
+        "hover:text-ink-detail",
         // border hover
-        "hover:border-gray-300 dark:hover:border-gray-400",
+        "hover:border-line-strong",
         // selected
-        "data-[state=active]:border-gray-900 data-[state=active]:text-gray-900",
-        "dark:data-[state=active]:border-gray-50 dark:data-[state=active]:text-gray-50",
+        "data-[state=active]:border-black-a12 data-[state=active]:text-ink",
+        "dark:data-[state=active]:border-white-a12 dark:data-[state=active]:text-white-a12",
         // disabled
         "disabled:pointer-events-none",
-        "disabled:text-gray-300 dark:disabled:text-gray-700",
+        "disabled:text-ink-meta",
       )
     case "solid":
       return cx(

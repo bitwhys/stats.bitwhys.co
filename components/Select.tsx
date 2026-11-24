@@ -1,5 +1,3 @@
-// Tremor Raw Select [v0.0.2]
-
 import * as SelectPrimitives from "@radix-ui/react-select"
 import {
   RiArrowDownSLine,
@@ -25,18 +23,17 @@ const selectTriggerStyles = [
     // base
     "group/trigger flex w-full select-none items-center justify-between gap-2 truncate rounded-md border px-3 py-2 shadow-xs outline-hidden transition text-base sm:text-sm",
     // border color
-    "border-gray-300 dark:border-gray-800",
+    "border-line-strong",
     // text color
-    "text-gray-900 dark:text-gray-50",
+    "text-ink",
     // placeholder
-    "data-placeholder:text-gray-500 dark:data-placeholder:text-gray-500",
+    "data-placeholder:text-ink-detail",
     // background color
-    "bg-white dark:bg-[#090E1A]",
+    "bg-surface-raised",
     // hover
-    "hover:bg-gray-50 dark:hover:bg-gray-950/50",
+    "hover:bg-surface",
     // disabled
-    "data-disabled:bg-gray-100 data-disabled:text-gray-400",
-    "dark:data-disabled:border-gray-700 dark:data-disabled:bg-gray-800 dark:data-disabled:text-gray-500",
+    "data-disabled:bg-surface-muted data-disabled:text-ink-meta",
     focusInput,
     // invalid (optional)
     // "dark:aria-invalid:ring-red-400/20 aria-invalid:ring-2 aria-invalid:ring-red-200 aria-invalid:border-red-500 invalid:ring-2 invalid:ring-red-200 invalid:border-red-500"
@@ -57,7 +54,7 @@ const SelectTrigger = React.forwardRef<
         hasError ? hasErrorInput : "",
         className,
       )}
-      tremor-id="tremor-raw"
+      data-slot="tremor-select"
       {...props}
     >
       <span className="truncate">{children}</span>
@@ -67,9 +64,9 @@ const SelectTrigger = React.forwardRef<
             // base
             "size-4 shrink-0",
             // text color
-            "text-gray-400 dark:text-gray-600",
+            "text-ink-meta",
             // disabled
-            "group-data-disabled/trigger:text-gray-300 dark:group-data-disabled/trigger:text-gray-600",
+            "group-data-disabled/trigger:text-ink-meta",
           )}
         />
       </SelectPrimitives.Icon>
@@ -140,11 +137,11 @@ const SelectContent = React.forwardRef<
           // heights
           "max-h-(--radix-select-content-available-height)",
           // background color
-          "bg-white dark:bg-[#090E1A]",
+          "bg-surface-raised",
           // text color
-          "text-gray-900 dark:text-gray-50",
+          "text-ink",
           // border color
-          "border-gray-200 dark:border-gray-800",
+          "border-line-strong",
           // transition
           "will-change-[transform,opacity]",
           // "data-[state=open]:animate-slideDownAndFade",
@@ -185,7 +182,7 @@ const SelectGroupLabel = React.forwardRef<
       // base
       "px-3 py-2 text-xs font-medium tracking-wide",
       // text color
-      "text-gray-500 dark:text-gray-500",
+      "text-ink-detail",
       className,
     )}
     {...props}
@@ -205,13 +202,13 @@ const SelectItem = React.forwardRef<
         // base
         "grid cursor-pointer grid-cols-[1fr_20px] gap-x-2 rounded-sm px-3 py-2 outline-hidden transition-colors data-[state=checked]:font-semibold sm:text-sm",
         // text color
-        "text-gray-900 dark:text-gray-50",
+        "text-ink",
         // disabled
-        "data-disabled:pointer-events-none data-disabled:text-gray-400 data-disabled:hover:bg-none dark:data-disabled:text-gray-600",
+        "data-disabled:pointer-events-none data-disabled:text-ink-meta data-disabled:hover:bg-none",
         // focus
-        "focus-visible:bg-gray-100 dark:focus-visible:bg-gray-900",
+        "focus-visible:bg-surface-faint",
         // hover
-        "hover:bg-gray-100 dark:hover:bg-gray-900",
+        "hover:bg-surface-faint",
         className,
       )}
       {...props}
@@ -221,7 +218,7 @@ const SelectItem = React.forwardRef<
       </SelectPrimitives.ItemText>
       <SelectPrimitives.ItemIndicator>
         <RiCheckLine
-          className="size-5 shrink-0 text-gray-800 dark:text-gray-200"
+          className="size-5 shrink-0 text-black-a10 dark:text-white-a10"
           aria-hidden="true"
         />
       </SelectPrimitives.ItemIndicator>
@@ -241,7 +238,7 @@ const SelectSeparator = React.forwardRef<
       // base
       "-mx-1 my-1 h-px",
       // background color
-      "bg-gray-300 dark:bg-gray-700",
+      "bg-line",
       className,
     )}
     {...props}

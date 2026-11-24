@@ -140,8 +140,9 @@
 }
 
 @theme {
-  --color-surface: var(--color-gray-2);
-  --color-surface-raised: var(--color-white-a12);
+  --color-debug: var(--deubg);
+  --color-surface: var(--surface); /* application background, hover for surface-raised */
+  --color-surface-raised: var(--surface-raised);
   --color-surface-faint: var(--color-gray-3);
   --color-surface-muted: var(--color-gray-4); /* disabled states */
   /* borders */

@@ -71,3 +71,15 @@
     }
   }
 }
+
+
+:root {
+  --debug:#E93D82;
+  --surface: var(--color-gray-2);
+  --surface-raised: var(--color-white-a12);
+}
+
+.dark {
+  --surface: var(--color-gray-1);
+  --surface-raised: var(--color-gray-2);
+}

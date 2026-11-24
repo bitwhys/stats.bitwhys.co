@@ -1,5 +1,3 @@
-// Tremor Raw Dropdown Menu [v0.0.0]
-
 "use client"
 
 import * as DropdownMenuPrimitives from "@radix-ui/react-dropdown-menu"
@@ -38,13 +36,13 @@ const DropdownMenuSubMenuTrigger = React.forwardRef<
       // base
       "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-1 outline-hidden transition-colors data-[state=checked]:font-semibold sm:text-sm",
       // text color
-      "text-gray-900 dark:text-gray-50",
+      "text-ink",
       // disabled
-      "data-disabled:pointer-events-none data-disabled:text-gray-400 data-disabled:hover:bg-none dark:data-disabled:text-gray-600",
+      "data-disabled:pointer-events-none data-disabled:text-ink-meta data-disabled:hover:bg-none",
       // focus
       "focus-visible:bg-gray-100 data-[state=open]:bg-gray-100 dark:focus-visible:bg-gray-900 dark:data-[state=open]:bg-gray-900",
       // hover
-      "hover:bg-gray-100 dark:hover:bg-gray-900",
+      "hover:bg-surface-faint",
       //
       className,
     )}
