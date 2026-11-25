@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../styles/tokens/colors.css";
+@import "../styles/tokens/custom.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -139,6 +140,16 @@
   }
 }
 
+@theme inline {
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
 @theme {
   --color-debug: var(--deubg);
   --color-surface: var(--surface); /* application background, hover for surface-raised */
@@ -168,5 +179,8 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-line, currentcolor);
+  }
+  :root {
+    --radius: 0.625rem;
   }
 }

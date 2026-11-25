@@ -1,4 +1,3 @@
-import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import {
   Select,
@@ -17,6 +16,7 @@ import {
   TableRow,
 } from "@/components/Table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs";
+import { FetchButton } from "./_components/FetchButton";
 
 const data = [
   {
@@ -80,14 +80,12 @@ function DataTable() {
     <>
       <div className="sm:flex sm:items-center sm:justify-between sm:space-x-10">
         <div>
-          <h3 className="font-semibold">
-            Workspaces
-          </h3>
+          <h3 className="font-semibold">Workspaces</h3>
           <p className="mt-1 text-sm/6 text-ink-detail">
             Overview of all registered workspaces within your organization.
           </p>
         </div>
-        <Button className="mt-4 w-full sm:mt-0 sm:w-fit">Add workspace</Button>
+        <FetchButton />
       </div>
       <TableRoot className="mt-8">
         <Table>
@@ -106,10 +104,7 @@ function DataTable() {
           </TableHead>
           <TableBody>
             {data.map((item) => (
-              <TableRow
-                key={item.workspace}
-                className="even:bg-surface-faint"
-              >
+              <TableRow key={item.workspace} className="even:bg-surface-faint">
                 <TableCell className="font-medium text-ink">
                   {item.workspace}
                 </TableCell>
@@ -217,7 +212,7 @@ export default function Page() {
             <TabsContent value="2" className="mt-4">
               <Card className="p-3">
                 {/*<ContentPlaceholder />*/}
-                <DataTable/>
+                <DataTable />
               </Card>
             </TabsContent>
           </Tabs>

@@ -1,16 +1,17 @@
 // Tremor Raw Button [v0.1.1]
 
-import { Slot } from "@radix-ui/react-slot"
-import { RiLoader2Fill } from "@remixicon/react"
-import React from "react"
-import { tv, type VariantProps } from "tailwind-variants"
+import { Slot } from "@radix-ui/react-slot";
+import { RiLoader2Fill } from "@remixicon/react";
+import React from "react";
+import { tv, type VariantProps } from "tailwind-variants";
 
-import { cx, focusRing } from "../lib/utils"
+import { cx, focusRing } from "../lib/utils";
+import { Spinner } from "./icons/Spinner";
 
 const buttonVariants = tv({
   base: [
     // base
-    "relative inline-flex items-center justify-center whitespace-nowrap rounded-md border px-3 py-2 text-center font-medium shadow-xs transition-all duration-100 ease-in-out text-base sm:text-sm",
+    "group relative inline-flex items-center justify-center whitespace-nowrap rounded-md border px-3 py-2 text-center font-medium shadow-xs transition-all duration-100 ease-in-out text-base sm:text-sm",
     // disabled
     "disabled:pointer-events-none disabled:shadow-none",
     // focus
@@ -89,14 +90,15 @@ const buttonVariants = tv({
   defaultVariants: {
     variant: "primary",
   },
-})
+});
 
 interface ButtonProps
-  extends React.ComponentPropsWithoutRef<"button">,
+  extends
+    React.ComponentPropsWithoutRef<"button">,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
-  isLoading?: boolean
-  loadingText?: string
+  asChild?: boolean;
+  isLoading?: boolean;
+  loadingText?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -113,18 +115,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }: ButtonProps,
     forwardedRef,
   ) => {
-    const Component = asChild ? Slot : "button"
+    const Component = asChild ? Slot : "button";
     return (
       <Component
         ref={forwardedRef}
         className={cx(buttonVariants({ variant }), className)}
         disabled={disabled || isLoading}
-        tremor-id="tremor-raw"
+        data-slot="creight-button"
+        // TODO: find a better name for the non-loading state
+        data-loading={isLoading ? "true" : "false"}
         {...props}
       >
         {isLoading ? (
           <span className="pointer-events-none flex shrink-0 items-center justify-center gap-1.5">
-            <RiLoader2Fill
+            <Spinner
               className="size-4 shrink-0 animate-spin"
               aria-hidden="true"
             />
@@ -137,10 +141,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           children
         )}
       </Component>
-    )
+    );
   },
-)
+);
 
-Button.displayName = "Button"
+Button.displayName = "Button";
 
-export { Button, buttonVariants, type ButtonProps }
+export { Button, type ButtonProps, buttonVariants };
