@@ -1,10 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRoot,
+  TableRow,
+} from "@/components/Table";
 import { queryRows } from "@/lib/db/duckdb";
 import { loadBrowserFile } from "@/lib/db/duckdb-files";
 
 export function DataExplorer() {
+  // declare state
   const [tableName, setTableName] = useState<string | null>(null);
   const [rows, setRows] = useState<Record<string, unknown>[]>([]);
   const [status, setStatus] = useState<string>(
@@ -12,6 +22,7 @@ export function DataExplorer() {
   );
   const [error, setError] = useState<string | null>(null);
 
+  // define file upload handler
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -41,6 +52,7 @@ export function DataExplorer() {
     }
   }
 
+  // extract column names for header
   const columns = rows.length > 0 ? Object.keys(rows[0]) : [];
 
   return (
@@ -56,30 +68,36 @@ export function DataExplorer() {
       {error && <p className="text-sm text-red-600">Error: {error}</p>}
 
       {tableName && rows.length > 0 && (
-        <div className="overflow-x-auto border rounded">
-          <table className="min-w-full text-left text-base">
-            <thead className="bg-surface-muted">
-              <tr>
+        <TableRoot className="overflow-x-auto">
+          <Table>
+            <TableHead className="bg-surface-muted">
+              <TableRow>
                 {columns.map((col) => (
-                  <th key={col} className="px-3 py-2 font-semibold">
+                  <TableHeaderCell
+                    key={col}
+                    className="px-3 py-2 font-semibold"
+                  >
                     {col}
-                  </th>
+                  </TableHeaderCell>
                 ))}
-              </tr>
-            </thead>
-            <tbody>
+              </TableRow>
+            </TableHead>
+            <TableBody>
               {rows.map((row, idx) => (
-                <tr key={idx} className="border-t">
+                <TableRow key={idx} className="even:bg-surface-faint">
                   {columns.map((col) => (
-                    <td key={col} className="px-3 py-1.5 whitespace-nowrap">
+                    <TableCell
+                      key={col}
+                      className="px-3 py-1.5 whitespace-nowrap"
+                    >
                       {String(row[col] ?? "")}
-                    </td>
+                    </TableCell>
                   ))}
-                </tr>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </TableBody>
+          </Table>
+        </TableRoot>
       )}
     </div>
   );
