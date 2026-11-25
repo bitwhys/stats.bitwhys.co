@@ -52,13 +52,13 @@ export function DataExplorer() {
         className="block text-sm"
       />
 
-      <p className="text-sm text-neutral-600">{status}</p>
+      <p className="text-sm text-ink-detail">{status}</p>
       {error && <p className="text-sm text-red-600">Error: {error}</p>}
 
       {tableName && rows.length > 0 && (
         <div className="overflow-x-auto border rounded">
-          <table className="min-w-full text-left text-xs">
-            <thead className="bg-neutral-100">
+          <table className="min-w-full text-left text-base">
+            <thead className="bg-surface-muted">
               <tr>
                 {columns.map((col) => (
                   <th key={col} className="px-3 py-2 font-semibold">

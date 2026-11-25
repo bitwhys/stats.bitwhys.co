@@ -16,6 +16,7 @@ import {
   TableRow,
 } from "@/components/Table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs";
+import { DataExplorer } from "./_components/DataExplorer";
 import { FetchButton } from "./_components/FetchButton";
 
 const data = [
@@ -194,10 +195,7 @@ export default function Page() {
               <TabsTrigger value="2">Detail</TabsTrigger>
             </TabsList>
             <TabsContent value="1" className="mt-4">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Card className="h-36 p-2">
-                  <ContentPlaceholder />
-                </Card>
+              <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <Card className="h-36 p-2">
                   <ContentPlaceholder />
                 </Card>
@@ -208,6 +206,9 @@ export default function Page() {
                   <ContentPlaceholder />
                 </Card>
               </div>
+              <Card className="mt-4 p-2">
+                <DataExplorer />
+              </Card>
             </TabsContent>
             <TabsContent value="2" className="mt-4">
               <Card className="p-3">
