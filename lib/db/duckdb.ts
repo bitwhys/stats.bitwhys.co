@@ -10,6 +10,7 @@ import * as duckdb from "@duckdb/duckdb-wasm";
  */
 let dbPromise: Promise<duckdb.AsyncDuckDB> | null = null;
 let connPromise: Promise<duckdb.AsyncDuckDBConnection> | null = null;
+let queue: Promise<unknown> = Promise.resolve();
 
 // Point DuckDB at the static files we copied into public/duckdb/.
 // selectBundle() probes the browser for Wasm exception handling (EH)
@@ -76,6 +77,37 @@ export function getConnection(): Promise<duckdb.AsyncDuckDBConnection> {
     connPromise = getDuckDB().then((db) => db.connect());
   }
   return connPromise;
+}
+
+export function exclusive<T>(
+  fn: (conn: duckdb.AsyncDuckDBConnection) => Promise<T>,
+): Promise<T> {
+  const next = queue.then(async () => {
+    const conn = await getConnection();
+    return fn(conn);
+  });
+  queue = next.catch(() => {});
+  return next;
+}
+
+export async function queryPrepared<T extends Record<string, unknown>>(
+  sql: string,
+  params: (string | number | boolean)[] = [],
+): Promise<T[]> {
+  return exclusive(async (conn) => {
+    if (params.length === 0) {
+      const table = await conn.query(sql);
+      return table.toArray().map((row) => row.toJSON() as T);
+    }
+
+    const stmt = await conn.prepare(sql);
+    try {
+      const table = await stmt.query(...params);
+      return table.toArray().map((row) => row.toJSON() as T);
+    } finally {
+      await stmt.close();
+    }
+  });
 }
 
 /**

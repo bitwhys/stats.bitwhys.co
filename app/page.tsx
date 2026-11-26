@@ -206,7 +206,7 @@ export default function Page() {
                   <ContentPlaceholder />
                 </Card>
               </div>
-              <Card className="mt-4 p-2">
+              <Card className="mt-4 p-4">
                 <DataExplorer />
               </Card>
             </TabsContent>
